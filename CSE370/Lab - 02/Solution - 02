@@ -1,1 +1,345 @@
 
+Setting environment for using XAMPP for Windows.
+samia@RAHAT c:\New folder
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use Google_22301206;
+Database changed
+MariaDB [Google_22301206]> describe Developers;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| member_id    | int(11)      | YES  |     | NULL    |       |
+| name         | varchar(30)  | YES  |     | NULL    |       |
+| email        | varchar(100) | YES  |     | NULL    |       |
+| followers    | int(11)      | YES  |     | NULL    |       |
+| joining_date | date         | YES  |     | NULL    |       |
+| multiplier   | int(11)      | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.022 sec)
+
+MariaDB [Google_22301206]> CREATE TABLE  Developers
+    -> (
+    ->     member_id int,
+    ->     name varchar(30),
+    ->     email varchar(100),
+    ->     influence_count char(6),
+    ->     joining_date date,
+    ->     multiplier int
+    ->
+    -> );
+ERROR 1050 (42S01): Table 'developers' already exists
+MariaDB [Google_22301206]> DROP DATABASE Google_22301206;
+Query OK, 2 rows affected (0.039 sec)
+
+MariaDB [(none)]> create database Google_22301206;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> use Google_22301206;
+Database changed
+MariaDB [Google_22301206]> CREATE TABLE  Developers
+    -> (
+    ->     member_id int,
+    ->     name varchar(30),
+    ->     email varchar(100),
+    ->     influence_count char(6),
+    ->     joining_date date,
+    ->     multiplier int
+    ->
+    -> );
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [Google_22301206]> show tables;
++---------------------------+
+| Tables_in_google_22301206 |
++---------------------------+
+| developers                |
++---------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [Google_22301206]> describe Developers;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| member_id       | int(11)      | YES  |     | NULL    |       |
+| name            | varchar(30)  | YES  |     | NULL    |       |
+| email           | varchar(100) | YES  |     | NULL    |       |
+| influence_count | char(6)      | YES  |     | NULL    |       |
+| joining_date    | date         | YES  |     | NULL    |       |
+| multiplier      | int(11)      | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+6 rows in set (0.021 sec)
+
+MariaDB [Google_22301206]> alter table Developers modify column influence_count int;
+Query OK, 0 rows affected (0.036 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> alter table Developers change column influence_count followers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [Google_22301206]> alter table Developers modify column influence_count int;
+Query OK, 0 rows affected (0.006 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> alter table Developers change column influence_count followers int;
+Query OK, 0 rows affected (0.008 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> SELECT * FROM Developers;
+Empty set (0.000 sec)
+
+MariaDB [Google_22301206]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 22301206_lab1      |
+| google_22301206    |
+| information_schema |
+| my_databases       |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| samia              |
+| test               |
++--------------------+
+9 rows in set (0.062 sec)
+
+MariaDB [Google_22301206]> INSERT INTO Developers values
+    ->
+    -> (1, 'Taylor Otwell', 'otwell@laravel.com', '739360', '2020-6-10', 10),
+    -> (2, 'Ryan Dahl', 'ryan@nodejs.org', '633632', '2020-04-22', 10),
+    -> (3, 'Brendan Eich', 'eich@javascript.com', '939570', '2020-05-07', 8 ),
+    -> (4, 'Evan You', 'you@vuejs.org', '982630', '2020-06-11', 7),
+    -> (5, 'Rasmus Lerdorf', 'lerdorf@php.net', '937927', '2020-06-3', 8),
+    -> (6, 'Guido van Rossum', 'guido@python.org', '968827', '2020-07-18', 19),
+    -> (7, 'Adrian Holovaty', 'adrian@djangoproject.com', '570724', '2020-05-07', 5),
+    -> (8, 'Simon Willison', 'simon@djangoproject.com', '864615', '2020-04-30', 4),
+    -> (9, 'James Gosling', 'james@java.com' , '719491', '2020-05-18', 5),
+    -> (10, 'Rod Johnson', 'rod@spring.io', '601744', '2020-05-18', 7),
+    -> (11, 'Satoshi Nakamoto', 'nakamoto@blockchain.com', '630488', '2020-05-10', 10);
+Query OK, 11 rows affected (0.003 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 22301206_lab1      |
+| google_22301206    |
+| information_schema |
+| my_databases       |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| samia              |
+| test               |
++--------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [Google_22301206]> show tables;
++---------------------------+
+| Tables_in_google_22301206 |
++---------------------------+
+| developers                |
++---------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [Google_22301206]> select * from Developers;
++-----------+------------------+--------------------------+-----------+--------------+------------+
+| member_id | name             | email                    | followers | joining_date | multiplier |
++-----------+------------------+--------------------------+-----------+--------------+------------+
+|         1 | Taylor Otwell    | otwell@laravel.com       |    739360 | 2020-06-10   |         10 |
+|         2 | Ryan Dahl        | ryan@nodejs.org          |    633632 | 2020-04-22   |         10 |
+|         3 | Brendan Eich     | eich@javascript.com      |    939570 | 2020-05-07   |          8 |
+|         4 | Evan You         | you@vuejs.org            |    982630 | 2020-06-11   |          7 |
+|         5 | Rasmus Lerdorf   | lerdorf@php.net          |    937927 | 2020-06-03   |          8 |
+|         6 | Guido van Rossum | guido@python.org         |    968827 | 2020-07-18   |         19 |
+|         7 | Adrian Holovaty  | adrian@djangoproject.com |    570724 | 2020-05-07   |          5 |
+|         8 | Simon Willison   | simon@djangoproject.com  |    864615 | 2020-04-30   |          4 |
+|         9 | James Gosling    | james@java.com           |    719491 | 2020-05-18   |          5 |
+|        10 | Rod Johnson      | rod@spring.io            |    601744 | 2020-05-18   |          7 |
+|        11 | Satoshi Nakamoto | nakamoto@blockchain.com  |    630488 | 2020-05-10   |         10 |
++-----------+------------------+--------------------------+-----------+--------------+------------+
+11 rows in set (0.000 sec)
+
+MariaDB [Google_22301206]> alter table Developers modify column followers varchar(100);
+Query OK, 11 rows affected (0.026 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> alter table Developers modify column followers int;
+Query OK, 11 rows affected (0.026 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> alter table Developers change column followers influence_count int;
+Query OK, 0 rows affected (0.008 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> alter table Developers modify column influence_count int;
+Query OK, 0 rows affected (0.005 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> show tables;
++---------------------------+
+| Tables_in_google_22301206 |
++---------------------------+
+| developers                |
++---------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [Google_22301206]> select * from Developers;
++-----------+------------------+--------------------------+-----------------+--------------+------------+
+| member_id | name             | email                    | influence_count | joining_date | multiplier |
++-----------+------------------+--------------------------+-----------------+--------------+------------+
+|         1 | Taylor Otwell    | otwell@laravel.com       |          739360 | 2020-06-10   |         10 |
+|         2 | Ryan Dahl        | ryan@nodejs.org          |          633632 | 2020-04-22   |         10 |
+|         3 | Brendan Eich     | eich@javascript.com      |          939570 | 2020-05-07   |          8 |
+|         4 | Evan You         | you@vuejs.org            |          982630 | 2020-06-11   |          7 |
+|         5 | Rasmus Lerdorf   | lerdorf@php.net          |          937927 | 2020-06-03   |          8 |
+|         6 | Guido van Rossum | guido@python.org         |          968827 | 2020-07-18   |         19 |
+|         7 | Adrian Holovaty  | adrian@djangoproject.com |          570724 | 2020-05-07   |          5 |
+|         8 | Simon Willison   | simon@djangoproject.com  |          864615 | 2020-04-30   |          4 |
+|         9 | James Gosling    | james@java.com           |          719491 | 2020-05-18   |          5 |
+|        10 | Rod Johnson      | rod@spring.io            |          601744 | 2020-05-18   |          7 |
+|        11 | Satoshi Nakamoto | nakamoto@blockchain.com  |          630488 | 2020-05-10   |         10 |
++-----------+------------------+--------------------------+-----------------+--------------+------------+
+11 rows in set (0.000 sec)
+
+MariaDB [Google_22301206]> alter table Developers modify column influence_count varchar(100);
+Query OK, 11 rows affected (0.029 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> select * from Developers;
++-----------+------------------+--------------------------+-----------------+--------------+------------+
+| member_id | name             | email                    | influence_count | joining_date | multiplier |
++-----------+------------------+--------------------------+-----------------+--------------+------------+
+|         1 | Taylor Otwell    | otwell@laravel.com       | 739360          | 2020-06-10   |         10 |
+|         2 | Ryan Dahl        | ryan@nodejs.org          | 633632          | 2020-04-22   |         10 |
+|         3 | Brendan Eich     | eich@javascript.com      | 939570          | 2020-05-07   |          8 |
+|         4 | Evan You         | you@vuejs.org            | 982630          | 2020-06-11   |          7 |
+|         5 | Rasmus Lerdorf   | lerdorf@php.net          | 937927          | 2020-06-03   |          8 |
+|         6 | Guido van Rossum | guido@python.org         | 968827          | 2020-07-18   |         19 |
+|         7 | Adrian Holovaty  | adrian@djangoproject.com | 570724          | 2020-05-07   |          5 |
+|         8 | Simon Willison   | simon@djangoproject.com  | 864615          | 2020-04-30   |          4 |
+|         9 | James Gosling    | james@java.com           | 719491          | 2020-05-18   |          5 |
+|        10 | Rod Johnson      | rod@spring.io            | 601744          | 2020-05-18   |          7 |
+|        11 | Satoshi Nakamoto | nakamoto@blockchain.com  | 630488          | 2020-05-10   |         10 |
++-----------+------------------+--------------------------+-----------------+--------------+------------+
+11 rows in set (0.002 sec)
+
+MariaDB [Google_22301206]> alter table Developers modify column influence_count int;
+Query OK, 11 rows affected (0.035 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> alter table Developers change column influence_count followers int;
+Query OK, 0 rows affected (0.008 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [Google_22301206]> select * from Developers;
++-----------+------------------+--------------------------+-----------+--------------+------------+
+| member_id | name             | email                    | followers | joining_date | multiplier |
++-----------+------------------+--------------------------+-----------+--------------+------------+
+|         1 | Taylor Otwell    | otwell@laravel.com       |    739360 | 2020-06-10   |         10 |
+|         2 | Ryan Dahl        | ryan@nodejs.org          |    633632 | 2020-04-22   |         10 |
+|         3 | Brendan Eich     | eich@javascript.com      |    939570 | 2020-05-07   |          8 |
+|         4 | Evan You         | you@vuejs.org            |    982630 | 2020-06-11   |          7 |
+|         5 | Rasmus Lerdorf   | lerdorf@php.net          |    937927 | 2020-06-03   |          8 |
+|         6 | Guido van Rossum | guido@python.org         |    968827 | 2020-07-18   |         19 |
+|         7 | Adrian Holovaty  | adrian@djangoproject.com |    570724 | 2020-05-07   |          5 |
+|         8 | Simon Willison   | simon@djangoproject.com  |    864615 | 2020-04-30   |          4 |
+|         9 | James Gosling    | james@java.com           |    719491 | 2020-05-18   |          5 |
+|        10 | Rod Johnson      | rod@spring.io            |    601744 | 2020-05-18   |          7 |
+|        11 | Satoshi Nakamoto | nakamoto@blockchain.com  |    630488 | 2020-05-10   |         10 |
++-----------+------------------+--------------------------+-----------+--------------+------------+
+11 rows in set (0.000 sec)
+
+MariaDB [Google_22301206]> select member_id, name, email, followers + 10 as followers, joining_date, multiplier from Developers;
++-----------+------------------+--------------------------+-----------+--------------+------------+
+| member_id | name             | email                    | followers | joining_date | multiplier |
++-----------+------------------+--------------------------+-----------+--------------+------------+
+|         1 | Taylor Otwell    | otwell@laravel.com       |    739370 | 2020-06-10   |         10 |
+|         2 | Ryan Dahl        | ryan@nodejs.org          |    633642 | 2020-04-22   |         10 |
+|         3 | Brendan Eich     | eich@javascript.com      |    939580 | 2020-05-07   |          8 |
+|         4 | Evan You         | you@vuejs.org            |    982640 | 2020-06-11   |          7 |
+|         5 | Rasmus Lerdorf   | lerdorf@php.net          |    937937 | 2020-06-03   |          8 |
+|         6 | Guido van Rossum | guido@python.org         |    968837 | 2020-07-18   |         19 |
+|         7 | Adrian Holovaty  | adrian@djangoproject.com |    570734 | 2020-05-07   |          5 |
+|         8 | Simon Willison   | simon@djangoproject.com  |    864625 | 2020-04-30   |          4 |
+|         9 | James Gosling    | james@java.com           |    719501 | 2020-05-18   |          5 |
+|        10 | Rod Johnson      | rod@spring.io            |    601754 | 2020-05-18   |          7 |
+|        11 | Satoshi Nakamoto | nakamoto@blockchain.com  |    630498 | 2020-05-10   |         10 |
++-----------+------------------+--------------------------+-----------+--------------+------------+
+11 rows in set (0.000 sec)
+
+MariaDB [Google_22301206]> select name, ((followers * (100/1000000)) * ((multiplier * 100/20))/100) as Efficiency from Developers;
++------------------+-----------------+
+| name             | Efficiency      |
++------------------+-----------------+
+| Taylor Otwell    | 36.968000000000 |
+| Ryan Dahl        | 31.681600000000 |
+| Brendan Eich     | 37.582800000000 |
+| Evan You         | 34.392050000000 |
+| Rasmus Lerdorf   | 37.517080000000 |
+| Guido van Rossum | 92.038565000000 |
+| Adrian Holovaty  | 14.268100000000 |
+| Simon Willison   | 17.292300000000 |
+| James Gosling    | 17.987275000000 |
+| Rod Johnson      | 21.061040000000 |
+| Satoshi Nakamoto | 31.524400000000 |
++------------------+-----------------+
+11 rows in set (0.001 sec)
+MariaDB [Google_22301206]> select name, ((followers * (100/1000000)) * ((multiplier * 100/20))/100) as Efficiency from Developers;
++------------------+-----------------+
+| name             | Efficiency      |
++------------------+-----------------+
+| Taylor Otwell    | 36.968000000000 |
+| Ryan Dahl        | 31.681600000000 |
+| Brendan Eich     | 37.582800000000 |
+| Evan You         | 34.392050000000 |
+| Rasmus Lerdorf   | 37.517080000000 |
+| Guido van Rossum | 92.038565000000 |
+| Adrian Holovaty  | 14.268100000000 |
+| Simon Willison   | 17.292300000000 |
+| James Gosling    | 17.987275000000 |
+| Rod Johnson      | 21.061040000000 |
+| Satoshi Nakamoto | 31.524400000000 |
++------------------+-----------------+
+11 rows in set (0.001 sec)
+
+MariaDB [Google_22301206]> select upper(name) as name, joining_date from Developers order by joining_date desc;
++------------------+--------------+
+| name             | joining_date |
++------------------+--------------+
+| GUIDO VAN ROSSUM | 2020-07-18   |
+| EVAN YOU         | 2020-06-11   |
+| TAYLOR OTWELL    | 2020-06-10   |
+| RASMUS LERDORF   | 2020-06-03   |
+| JAMES GOSLING    | 2020-05-18   |
+| ROD JOHNSON      | 2020-05-18   |
+| SATOSHI NAKAMOTO | 2020-05-10   |
+| BRENDAN EICH     | 2020-05-07   |
+| ADRIAN HOLOVATY  | 2020-05-07   |
+| SIMON WILLISON   | 2020-04-30   |
+| RYAN DAHL        | 2020-04-22   |
++------------------+--------------+
+11 rows in set (0.000 sec)
+
+MariaDB [Google_22301206]> select member_id, name, email, followers from Developers where email like '%.com' or email like '%.net';
++-----------+------------------+--------------------------+-----------+
+| member_id | name             | email                    | followers |
++-----------+------------------+--------------------------+-----------+
+|         1 | Taylor Otwell    | otwell@laravel.com       |    739360 |
+|         3 | Brendan Eich     | eich@javascript.com      |    939570 |
+|         5 | Rasmus Lerdorf   | lerdorf@php.net          |    937927 |
+|         7 | Adrian Holovaty  | adrian@djangoproject.com |    570724 |
+|         8 | Simon Willison   | simon@djangoproject.com  |    864615 |
+|         9 | James Gosling    | james@java.com           |    719491 |
+|        11 | Satoshi Nakamoto | nakamoto@blockchain.com  |    630488 |
++-----------+------------------+--------------------------+-----------+
+7 rows in set (0.000 sec)
