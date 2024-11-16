@@ -14,8 +14,6 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 MariaDB [(none)]> create database CSE370lab02;
 Query OK, 1 row affected (0.002 sec)
 
-MariaDB [(none)]> use CSE370lab2;
-ERROR 1049 (42000): Unknown database 'cse370lab2'
 MariaDB [(none)]> use CSE370lab02;
 Database changed
 MariaDB [CSE370lab02]> CREATE TABLE Lab_Grades
