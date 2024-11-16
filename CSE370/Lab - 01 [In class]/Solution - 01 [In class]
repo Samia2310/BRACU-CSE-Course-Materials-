@@ -29,7 +29,6 @@ Database changed
 MariaDB [my_databases]> use samia;
 Database changed
 MariaDB [samia]> create lab_grades;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'lab_grades' at line 1
 MariaDB [samia]> show databases;
 +--------------------+
 | Database           |
@@ -80,8 +79,6 @@ MariaDB [samia]> show databases;
 
 MariaDB [samia]> use samia;
 Database changed
-MariaDB [samia]> create table lab_grades;
-ERROR 1050 (42S01): Table 'lab_grades' already exists
 MariaDB [samia]> show tables;
 +-----------------+
 | Tables_in_samia |
@@ -121,15 +118,10 @@ MariaDB [samia]> select * from lab_grades;
 +--------+---------+-------+---------+--------------+---------------+------+-----------------+
 9 rows in set (0.059 sec)
 
-MariaDB [samia]> insert into lab_grades values ('s010', 'Samia', 'CSE', '1', 10, 19.6, 3.79,
-, '2018-09-05') ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' '2018-09-05')' at line 1
 MariaDB [samia]> insert into lab_grades values ('s010', 'Samia', 'CSE', '1', '10', 19.5, 3.7
 9, '2018-09-05');
 Query OK, 1 row affected (0.003 sec)
 
-MariaDB [samia]> select * lab_grades ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'lab_grades' at line 1
 MariaDB [samia]> select * from lab_grades;
 +--------+---------+-------+---------+--------------+---------------+------+-----------------+
 | std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
@@ -261,8 +253,7 @@ MariaDB [samia]> select * from lab_grades;
 +--------+---------+-------+---------+--------------+---------------+------+------------+
 10 rows in set (0.001 sec)
 
-MariaDB [samia]> update lab_grades set name= 'Naheed', project_marks= 19 where std_id = 's00
-4' ;
+MariaDB [samia]> update lab_grades set name= 'Naheed', project_marks= 19 where std_id = 's004' ;
 Query OK, 1 row affected (0.004 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
@@ -300,8 +291,7 @@ MariaDB [samia]> select std_id, name, project_marks from lab_grades;
 +--------+---------+---------------+
 10 rows in set (0.000 sec)
 
-MariaDB [samia]> select name, project_marks + days_present * 5/12 as total_marks from lab_gr
-ades;
+MariaDB [samia]> select name, project_marks + days_present * 5/12 as total_marks from lab_grades;
 +---------+--------------+
 | name    | total_marks  |
 +---------+--------------+
@@ -318,18 +308,7 @@ ades;
 +---------+--------------+
 10 rows in set (0.001 sec)
 
-MariaDB [samia]> select name, round(total_marks);;
-ERROR 1054 (42S22): Unknown column 'name' in 'field list'
-ERROR: No query specified
-
-MariaDB [samia]> select name, round(total_marks);
-ERROR 1054 (42S22): Unknown column 'name' in 'field list'
-MariaDB [samia]> select name, round(total_marks) as total_marks;
-ERROR 1054 (42S22): Unknown column 'name' in 'field list'
-MariaDB [samia]> select name, round(total_marks) as total_marks from lab_grades;
-ERROR 1054 (42S22): Unknown column 'total_marks' in 'field list'
-MariaDB [samia]> select name, round(project_marks + days_present * 5/12,2) as total_marks fr
-om lab_grades;
+MariaDB [samia]> select name, round(project_marks + days_present * 5/12,2) as total_marks from lab_grades;
 +---------+-------------+
 | name    | total_marks |
 +---------+-------------+
