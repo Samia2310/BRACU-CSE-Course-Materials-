@@ -1,0 +1,33 @@
+R1>en
+R1#conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+R1(config)#ip route 172.31.0.0 255.255.255.0 172.31.1.193
+R1(config)#ip route 172.31.1.128 255.255.255.192 172.31.1.193
+R1(config)#ip route 172.31.1.196 255.255.255.252 172.31.1.193
+R1(config)#exit
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R2>en
+R2#conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+R2(config)#ip route 172.31.1.0 255.255.255.128 s0/0/0
+%Default route without gateway, if not a point-to-point interface, may impact performance
+R2(config)#ip route 172.31.1.128 255.255.255.192 s0/0/1
+%Default route without gateway, if not a point-to-point interface, may impact performance
+R2(config)#exit
+R2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+R3>en
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#ip route 0.0.0.0 0.0.0.0 172.31.1.197
+R3(config)#exit
+R3#
+%SYS-5-CONFIG_I: Configured from console by console
+
+
+
+
